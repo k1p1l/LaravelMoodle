@@ -3,14 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use SoftDeletes;
-
-    // Указываем поле которе будет доступно нам
     protected $fillable = [
-        'category'
-    ];
+        'id', 'title'
+        ];
+
+    public function items(){
+        return $this->belongsToMany(Item::class, 'items_categories');
+    }
 }

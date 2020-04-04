@@ -1,100 +1,142 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+<!-- Styles -->
+<style>
+    html, body {
+        background-color: #fff;
+        color: #636b6f;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 200;
+        height: 100vh;
+        margin: 0;
+    }
 
-        <title>Laravel</title>
+    .full-height {
+        height: 100vh;
+    }
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    .position-ref {
+        position: relative;
+    }
 
-            .full-height {
-                height: 100vh;
-            }
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    .content {
+        text-align: center;
+    }
 
-            .position-ref {
-                position: relative;
-            }
+    .title {
+        font-size: 84px;
+    }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+    .links > a {
+        color: #636b6f;
+        padding: 0 25px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
 
-            .content {
-                text-align: center;
-            }
+    .m-b-md {
+        margin-bottom: 30px;
+    }
+</style>
 
-            .title {
-                font-size: 84px;
-            }
+@extends('parent')
+@section('main')
+    <div align="right">
+        <a href="{{url('/add')}}" class="btn btn-success">Add</a>
+    </div>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Hello LaravelMoodl
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+    <form method="get" action="{{url('/welcome')}}">
+        @csrf
+        <select name="select_value">
+            <option selected disabled> select</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+        </select>
+        <div align="left btn-primary">
+            <input type="text" name="search">
+            <input type="submit" name="add_search" class="btn btn-primary" value="search">
         </div>
-    </body>
-</html>
+    </form>
+
+
+    @if ($message = Session::get('success'))
+        <div class="alert-success">
+            <p>{{$message}}</p>
+        </div>
+    @endif
+
+    @if ($message = Session::get('exception'))
+        <div class="alert-danger">
+            <p>{{$message}}</p>
+        </div>
+    @endif
+
+    <table class="table table-bordered table-striped table-info">
+        <tr>
+            @if (Auth::check() && Auth::user()->is_Admin)
+                <th width="15%">Image</th>
+                <th width="15%">Title</th>
+                <th width="15%">Category</th>
+                <th width="35%">Description</th>
+                <th width="5%">Tools</th>
+            @else
+                <th width="15%">Image</th>
+                <th width="10%">Title</th>
+                <th width="10%">Category</th>
+                <th width="20%">Description</th>
+                <th width="5%">Tools</th>
+            @endif
+        </tr>
+
+        @foreach($itemData as $row)
+            <tr>
+                <th><img src="{{ URL::to('/images/'.$row->image)}}" class="img-thumbnail" width="150px"></th>
+                <td>{{$row->title}}</td>
+                {{--                    {{dd($row->category_id)}}--}}
+                @if($row->category_id == 1)
+                    <td>First</td>
+                @elseif($row->category_id == 2)
+                    <td>Second</td>
+                @else
+                    <td>Third</td>
+                @endif
+
+                <td>{{$row->description}}</td>
+                <td>
+                    @if (Auth::check() && Auth::user()->is_Admin)
+                        <a href="{{route('welcome.show', $row->id)}}" class="btn btn-primary">Show</a><br/>
+                        <a href="{{route('welcome.edit', $row->id)}}" class="btn btn-warning">Edit</a>
+                        <form action="{{route('welcome.destroy', $row->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{route('welcome.show', $row->id)}}" class="btn btn-primary">Show</a>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </table>
+    {!! $itemData->links() !!}
+@endsection
+
+
