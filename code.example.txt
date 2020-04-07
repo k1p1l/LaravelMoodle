@@ -1,0 +1,14 @@
+string b = 'Hello';
+int a = 10;
+float tmp = a / 3;
+float result = 0;
+for (int i = 0; i < 10; i++)
+{
+    for (int j = 0; j < 10; j++)
+    {
+        result += (i + 5) * j;
+    }
+}
+System.out.print(result);
+Scanner sc = new Scanner();
+char q = sc.nextChatAt();

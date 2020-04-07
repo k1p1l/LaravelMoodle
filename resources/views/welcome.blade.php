@@ -59,6 +59,9 @@
     <div align="right">
         <a href="{{url('/add')}}" class="btn btn-success">Add</a>
     </div>
+    <div align="left">
+        <a href="{{url('/resource')}}" class="btn btn-primary">Compilation</a>
+    </div>
 
     <form method="get" action="{{url('/welcome')}}">
         @csrf

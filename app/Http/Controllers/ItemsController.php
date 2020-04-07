@@ -23,6 +23,14 @@ class ItemsController extends Controller
 {
     const PAGINATE = 5;
 
+
+    public function compil(Request $request)
+    {
+        var_dump($request);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *

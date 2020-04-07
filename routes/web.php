@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
@@ -26,6 +27,12 @@ Route::get('/', 'ItemsController@index');
 Route::get('showToken', function () {
     echo csrf_token();
 });
+
+Route::get('/resource', function (){
+   return view('compilation');
+});
+
+Route::post('/resource/compil', 'CompilationController@getStringCode');
 
 Route::get('/add', function () {
     if (Auth::check()) {
