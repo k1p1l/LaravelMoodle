@@ -1,0 +1,6 @@
+array (
+  'id_6' => 
+  array (
+    'exception' => 'VARIABLE <-a-> ALREADY ANNOUNCED',
+  ),
+)

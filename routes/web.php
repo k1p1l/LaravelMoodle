@@ -32,7 +32,7 @@ Route::get('/resource', function (){
    return view('compilation');
 });
 
-Route::post('/resource/compil', 'CompilationController@getStringCode');
+Route::post('/resource/compil', 'CompilationController@getCode');
 
 Route::get('/add', function () {
     if (Auth::check()) {

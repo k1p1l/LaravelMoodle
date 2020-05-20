@@ -1,0 +1,17 @@
+int a = 10;
+
+switch (a) {
+	case (10):
+		//Code2;
+		break;
+	case (20):
+		//Code2;
+		break;
+	case (30):
+		//Code3;
+		break;
+	default:
+		//CodeDefault;
+		break;
+}
+
