@@ -1,18 +1,5 @@
 string s = 'hello';
-boolean flag = true;
+s .= 'world';
 int a = 10;
-
-switch (b) {
-	case (10):
-		//Code1;
-		break;
-	case (20):
-		//Code2;
-		break;
-	case (30):
-		//Code3;
-		break;
-	default:
-		//CodeDefault;
-		break;
-}
+a = 10 + 50;
+boolean flag = true;

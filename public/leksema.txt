@@ -1,17 +1,17 @@
 array (
   'id_1' => 
   array (
-    'type' => 'Type variable',
+    'type' => 'Type Variable',
     'value' => 'string',
   ),
   'id_2' => 
   array (
-    'type' => 'Name variable',
+    'type' => 'Variable Name',
     'value' => 's',
   ),
   'id_3' => 
   array (
-    'type' => 'Sign',
+    'type' => 'Sign(equally)',
     'value' => '=',
   ),
   'id_4' => 
@@ -21,87 +21,77 @@ array (
   ),
   'id_5' => 
   array (
-    'type' => 'Type variable',
-    'value' => 'boolean',
+    'type' => 'Variable Name',
+    'value' => 's',
   ),
   'id_6' => 
   array (
-    'type' => 'Sign',
-    'value' => '=',
+    'type' => 'Sign(Сoncatenation)',
+    'value' => '.=',
   ),
   'id_7' => 
   array (
-    'type' => 'Type variable',
-    'value' => 'int',
+    'type' => 'Value',
+    'value' => '\'world\'',
   ),
   'id_8' => 
   array (
-    'type' => 'Sign',
-    'value' => '=',
+    'type' => 'Type Variable',
+    'value' => 'int',
   ),
   'id_9' => 
   array (
-    'type' => 'System command',
-    'value' => 'switch',
+    'type' => 'Variable Name',
+    'value' => 'a',
   ),
   'id_10' => 
   array (
-    'type' => 'Switch condition',
-    'value' => 'case',
+    'type' => 'Sign(equally)',
+    'value' => '=',
   ),
   'id_11' => 
   array (
-    'type' => 'Comment',
-    'value' => '//Code1',
+    'type' => 'Value',
+    'value' => '10',
   ),
   'id_12' => 
   array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Sign(equally)',
+    'value' => '=',
   ),
   'id_13' => 
   array (
-    'type' => 'System command',
-    'value' => 'case',
+    'type' => 'Value',
+    'value' => '10',
   ),
   'id_14' => 
   array (
-    'type' => 'Comment',
-    'value' => '//Code2',
+    'type' => 'Sign(plus)',
+    'value' => '+',
   ),
   'id_15' => 
   array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Value',
+    'value' => '50',
   ),
   'id_16' => 
   array (
-    'type' => 'System command',
-    'value' => 'case',
+    'type' => 'Type Variable',
+    'value' => 'boolean',
   ),
   'id_17' => 
   array (
-    'type' => 'Comment',
-    'value' => '//Code3',
+    'type' => 'Variable Name',
+    'value' => 'flag',
   ),
   'id_18' => 
   array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Sign(equally)',
+    'value' => '=',
   ),
   'id_19' => 
   array (
-    'type' => 'System command',
-    'value' => 'default',
-  ),
-  'id_20' => 
-  array (
-    'type' => 'Comment',
-    'value' => '//CodeDefault',
-  ),
-  'id_21' => 
-  array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Value',
+    'value' => 'true',
   ),
 )

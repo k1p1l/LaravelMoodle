@@ -13,6 +13,7 @@ class CompilationController extends Controller
 {
     public $leksema = [];
     public $error = [];
+    public $typeNameValue = [];
 
     public static $id = 0;
     public static $checkAfterTypeVariable = false;
@@ -22,9 +23,11 @@ class CompilationController extends Controller
     public static $checkAfterCase = false;
     public static $checkAfterCaseExpression = false;
 
-    public $useVariable = [];
     public $useVariableWithType = [];
+    public $useVariable = [];
+    public $variableNameWithValue = [];
     public $variableNow = '';
+    public $valueNow = '';
     public $switchConditionAndType = [];
 
     public function getCode(Request $request)
@@ -49,110 +52,58 @@ class CompilationController extends Controller
             $tmp = explode(' ', trim($temp, ';:'));
 
             foreach ($tmp as $value) {
-                $this->parserLeksema($value, $temp);
+                $this->parserLeksema($value, trim($temp, ';:'));
             }
-
-            $temp = '';
         }
+
         if ($this->error) {
             $filename = 'error.txt';
             file_put_contents($filename, var_export($this->error, true));
+            return;
         }
 
         $filename = 'leksema.txt';
         file_put_contents($filename, var_export($this->leksema, true));
 
-
-        $this->convertWIQA($this->leksema);
+//        $this->convertWIQA($this->leksema);
     }
 
-    public function convertWIQA(array $leksema)
+
+    public function parserLeksema($leksema, $rowLine)
     {
-        $Q = 0.0;
-        $A = 0.0;
-        dd($leksema);
-
-        foreach ($leksema as $item) {
-            dd($item);
-        }
-    }
-
-    public function parserLeksema($leksema, $rowString)
-    {
-        dd(phpinfo());
-        $checkTypeLeksema = CheckConst::checkVariableInArray($leksema);
-
-        if ($checkTypeLeksema === 'Type Variable') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Type variable',
-                    'value' => $leksema,
-                ]
-            ];
-
-            self::$checkAfterTypeVariable = true;
-            $this->variableNow = $leksema;
-
-            return;
+        $usedMethod = CheckConst::checkVariableInArray($leksema);
+        if (method_exists($this, $usedMethod)) {
+            $this->$usedMethod($leksema);
         }
 
-        if ($checkTypeLeksema === 'Sign') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Sign',
-                    'value' => $leksema,
-                ]
-            ];
+        if (!$usedMethod && self::$checkAfterTypeVariable) {
+            if ($this->checkUseVariableInTypeVariable($leksema, $rowLine)) {
+                $this->addLeksemaInArray('Variable Name', $leksema);
 
-            self::$checkAfterSing = true;
-
-            return;
-        }
-
-        if (!$checkTypeLeksema && self::$checkAfterTypeVariable) {
-            foreach ($this->useVariableWithType as $item) {
-                if ($item['value'] === $leksema && $item['type'] != $this->variableNow) {
-                    $this->error += [
-                        'id_' . ++self::$id => [
-                            'exception' => 'VARIABLE <-' . $leksema . '-> ALREADY ANNOUNCED'
-                        ]
-                    ];
-                }
-                return;
-            }
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Name variable',
-                    'value' => $leksema,
-                ]
-            ];
-
-            self::$checkAfterTypeVariable = false;
-            $this->useVariable[] = $leksema;
-            $this->useVariableWithType[] =
-                [
-                    'value' => $leksema,
+                $this->useVariable[] = $leksema;
+                $this->valueNow = $leksema;
+                $this->useVariableWithType[] = [
                     'type' => $this->variableNow,
-                ];
-
-            return;
-        }
-
-        if (!$checkTypeLeksema && self::$checkAfterSing) {
-            if ($this->checkVariableInTypeVariable($leksema, $this->variableNow)) {
-                $this->leksema += [
-                    'id_' . ++self::$id => [
-                        'type' => 'Value',
-                        'value' => $leksema,
-                    ]
+                    'name' => $leksema
                 ];
             } else {
-                $this->error += [
-                    'id_' . ++self::$id => [
-                        'exception' => 'CAN`OT CONVERT VARIABLE OF TYPE <-' . $this->variableNow . '-> TO TYPE ',
-                        'row' => $rowString
-                    ]
+                $this->addErrorInArray(2, $leksema, $rowLine);
+            }
+            self::$checkAfterTypeVariable = false;
+
+            return;
+        }
+
+        if (!$usedMethod && self::$checkAfterSing) {
+            if ($this->checkValueInTypeVariable($leksema, $this->variableNow)) {
+                $this->addLeksemaInArray('Value', $leksema);
+
+                $this->variableNameWithValue[] = [
+                    'name' => $this->valueNow,
+                    'value' => $leksema
                 ];
+            } else {
+                $this->addErrorInArray(1, $leksema, $rowLine);
             }
 
             self::$checkAfterSing = false;
@@ -161,25 +112,16 @@ class CompilationController extends Controller
             return;
         }
 
-        if (self::$checkAfterValue) {
-            $this->replaceVariableNow($leksema);
-        }
-
-        if (!$checkTypeLeksema && self::$checkAfterValue) {
+        if (!$usedMethod && self::$checkAfterValue) {
             if (in_array($leksema, $this->useVariable)) {
-                $this->leksema += [
-                    'id_' . ++self::$id => [
-                        'type' => 'Name variable',
-                        'value' => $leksema,
-                    ]
-                ];
+                if ($this->checkUseVariableInTypeVariable($leksema, $rowLine))
+                    $this->addLeksemaInArray('Variable Name', $leksema);
+                return;
+            } elseif (!in_array($leksema, $this->useVariable)) {
+                $this->addErrorInArray(3, $leksema, $rowLine);
+                return;
             } else {
-                $this->error += [
-                    'id_' . ++self::$id => [
-                        'exception' => 'UNKNOWN VARIABLE <-' . $leksema . '->',
-                        'row' => $rowString
-                    ]
-                ];
+                $this->addErrorInArray(2, $leksema, $rowLine);
             }
 
             self::$checkAfterValue = false;
@@ -187,118 +129,82 @@ class CompilationController extends Controller
             return;
         }
 
-        if ($checkTypeLeksema === 'System Command' && $leksema === 'switch') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'System command',
-                    'value' => $leksema,
-                ]
-            ];
-
-            self::$checkAfterSwitch = true;
-
-            return;
-        }
-
-        if (self::$checkAfterSwitch) {
-            $leksema = trim($leksema, '()');
-            $this->replaceVariableNow($leksema);
-
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Switch condition',
-                    'value' => $leksema,
-                ]
-            ];
-
-            self::$checkAfterSwitch = false;
-
-            return;
-        }
-
-        if ($checkTypeLeksema === 'System Command' && $leksema === 'case') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'System command',
-                    'value' => $leksema,
-                ]
-            ];
-
-            self::$checkAfterCase = true;
-            return;
-        }
-
-        if (self::$checkAfterCase && !$checkTypeLeksema === 'Comment') {
-            $leksema = trim($leksema, '():');
-            if ($this->checkVariableInTypeVariable($leksema, $this->variableNow)) {
-                $this->leksema += [
-                    'id_' . ++self::$id => [
-                        'type' => 'Case expression',
-                        'value' => $leksema,
-                    ]
-                ];
-            } else {
-                $this->error += [
-                    'id_' . ++self::$id => [
-                        'exception' => 'CAN`OT CONVERT VARIABLE OF TYPE <-' . $this->variableNow . '-> TO TYPE ',
-                        'row' => $rowString
-                    ]
-                ];
-            }
-
-            self::$checkAfterCase = false;
-            self::$checkAfterCaseExpression = true;
-
-            return;
-        }
-
-        if ($checkTypeLeksema === 'System Command') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'System command',
-                    'value' => $leksema,
-                ]
-            ];
-        }
-
-        if ($leksema === '{') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Open scob',
-                    'value' => $leksema
-                ]
-            ];
-        }
-
-        if ($leksema === '}') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Close scob',
-                    'value' => $leksema
-                ]
-            ];
-        }
-
-        if ($checkTypeLeksema === 'Comment') {
-            $this->leksema += [
-                'id_' . ++self::$id => [
-                    'type' => 'Comment',
-                    'value' => $leksema
-                ]
-            ];
-        }
     }
 
-    public function replaceVariableNow($leksema)
+    public function typeVariable($leksema)
     {
-        foreach ($this->useVariableWithType as $item) {
-            if ($item['value'] == $leksema) {
-                $this->variableNow = $item['type'];
-            }
-        }
+        $this->addLeksemaInArray('Type Variable', $leksema);
+
+        $this->variableNow = $leksema;
+        self::$checkAfterTypeVariable = true;
+
+        return;
     }
 
-    public function checkVariableInTypeVariable($value, $typeVariable)
+    public function typeSign($leksema)
+    {
+        $type = '';
+        switch ($leksema){
+            case '=':
+                $type = 'Sign(equally)';
+                break;
+            case '+':
+                $type = 'Sign(plus)';
+                break;
+            case '-':
+                $type = 'Sign(minus)';
+                break;
+            case '*':
+                $type = 'Sign(multiply)';
+                break;
+            case '/':
+                $type = 'Sign(divide)';
+                break;
+            case '.=':
+                $type = 'Sign(Сoncatenation)';
+                break;
+            default:
+                $type = 'Sign';
+                break;
+        }
+        $this->addLeksemaInArray($type, $leksema);
+
+        self::$checkAfterSing = true;
+
+        return;
+    }
+
+    public function addLeksemaInArray($type, $leksema)
+    {
+        $this->leksema += [
+            'id_' . ++self::$id => [
+                'type' => $type,
+                'value' => $leksema,
+            ]
+        ];
+    }
+
+    public function addErrorInArray($code, $leksema, $rowString)
+    {
+        if ($code == 1) {
+            $message = 'DO NOT CONVERT TYPE <-' . $leksema . '->';
+        }
+        if ($code == 2) {
+            $message = 'THIS VARIABLE <-' . $leksema . '-> IS ALREADY USED';
+        }
+        if ($code == 3) {
+            $message = 'THIS VARIABLE <-' . $leksema . '-> IS NOT INITIALIZED';
+        }
+
+        $this->error += [
+            'id_' . ++self::$id => [
+                'error' => $message,
+                'line' => $rowString,
+            ]
+        ];
+    }
+
+    public function checkValueInTypeVariable($value, $typeVariable)
     {
         if (is_numeric($value) && $typeVariable === 'int') {
             return true;
@@ -313,8 +219,25 @@ class CompilationController extends Controller
             return true;
         }
 
-        $flag = false;
+        return false;
+    }
 
-        return $flag;
+    public function checkUseVariableInTypeVariable($value, $rowString = '')
+    {
+        if (!in_array($value, $this->useVariable)) {
+            return true;
+        } else {
+            foreach ($this->useVariableWithType as $item) {
+                if ($item['name'] === $value) {
+                    $res = substr($rowString, strpos($rowString, '=') + 1, strlen($rowString));;
+                    $res = trim($res, ' ');
+                    if ($this->checkValueInTypeVariable($res, $item['type'])) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }

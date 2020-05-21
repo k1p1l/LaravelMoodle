@@ -16,22 +16,23 @@ class CheckConst
     public static $sign = [
         '+', '-', '++', '--', '*', '/', '=', '==', '===',
         '+=', '-=', '.', '*=', '/=', '>', '<', '<=', '>=',
+        '.='
     ];
 
 
     public static function checkVariableInArray($variable)
     {
         if (in_array($variable, self::$systemCommand)) {
-            return 'System Command';
+            return 'typeSystemCommand';
         }
         if (in_array($variable, self::$typeVariable)) {
-            return 'Type Variable';
+            return 'typeVariable';
         }
         if (in_array($variable, self::$sign)) {
-            return 'Sign';
+            return 'typeSign';
         }
         if (strpos($variable, '//') !== false) {
-            return 'Comment';
+            return 'typeComment';
         }
 
         return false;

@@ -1,12 +1,12 @@
 array (
-  'id_14' => 
+  'id_6' => 
   array (
-    'exception' => 'CAN`OT CONVERT VARIABLE OF TYPE <-boolean-> TO TYPE ',
-    'row' => '//Code2;',
+    'error' => 'THIS VARIABLE <-.=-> IS NOT INITIALIZED',
+    'line' => 's .= \'world\'',
   ),
-  'id_17' => 
+  'id_7' => 
   array (
-    'exception' => 'CAN`OT CONVERT VARIABLE OF TYPE <-boolean-> TO TYPE ',
-    'row' => '//Code3;',
+    'error' => 'THIS VARIABLE <-\'world\'-> IS NOT INITIALIZED',
+    'line' => 's .= \'world\'',
   ),
 )
