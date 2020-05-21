@@ -2,12 +2,12 @@ array (
   'id_1' => 
   array (
     'type' => 'Type variable',
-    'value' => 'int',
+    'value' => 'string',
   ),
   'id_2' => 
   array (
     'type' => 'Name variable',
-    'value' => 'a',
+    'value' => 's',
   ),
   'id_3' => 
   array (
@@ -17,79 +17,89 @@ array (
   'id_4' => 
   array (
     'type' => 'Value',
-    'value' => '10',
+    'value' => '\'hello\'',
   ),
   'id_5' => 
   array (
     'type' => 'Type variable',
-    'value' => 'string',
+    'value' => 'boolean',
   ),
-  'id_7' => 
+  'id_6' => 
   array (
     'type' => 'Sign',
     'value' => '=',
   ),
+  'id_7' => 
+  array (
+    'type' => 'Type variable',
+    'value' => 'int',
+  ),
   'id_8' => 
+  array (
+    'type' => 'Sign',
+    'value' => '=',
+  ),
+  'id_9' => 
   array (
     'type' => 'System command',
     'value' => 'switch',
   ),
-  'id_9' => 
+  'id_10' => 
   array (
     'type' => 'Switch condition',
     'value' => 'case',
   ),
-  'id_10' => 
-  array (
-    'type' => 'Comment',
-    'value' => '//Code2',
-  ),
   'id_11' => 
   array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Comment',
+    'value' => '//Code1',
   ),
   'id_12' => 
   array (
     'type' => 'System command',
-    'value' => 'case',
+    'value' => 'break',
   ),
   'id_13' => 
   array (
-    'type' => 'Case expression',
-    'value' => '//Code2',
+    'type' => 'System command',
+    'value' => 'case',
   ),
   'id_14' => 
   array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Comment',
+    'value' => '//Code2',
   ),
   'id_15' => 
   array (
     'type' => 'System command',
-    'value' => 'case',
+    'value' => 'break',
   ),
   'id_16' => 
   array (
-    'type' => 'Case expression',
-    'value' => '//Code3',
+    'type' => 'System command',
+    'value' => 'case',
   ),
   'id_17' => 
   array (
-    'type' => 'System command',
-    'value' => 'break',
+    'type' => 'Comment',
+    'value' => '//Code3',
   ),
   'id_18' => 
   array (
     'type' => 'System command',
-    'value' => 'default',
+    'value' => 'break',
   ),
   'id_19' => 
+  array (
+    'type' => 'System command',
+    'value' => 'default',
+  ),
+  'id_20' => 
   array (
     'type' => 'Comment',
     'value' => '//CodeDefault',
   ),
-  'id_20' => 
+  'id_21' => 
   array (
     'type' => 'System command',
     'value' => 'break',

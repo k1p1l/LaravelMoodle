@@ -1,6 +1,12 @@
 array (
-  'id_6' => 
+  'id_14' => 
   array (
-    'exception' => 'VARIABLE <-a-> ALREADY ANNOUNCED',
+    'exception' => 'CAN`OT CONVERT VARIABLE OF TYPE <-boolean-> TO TYPE ',
+    'row' => '//Code2;',
+  ),
+  'id_17' => 
+  array (
+    'exception' => 'CAN`OT CONVERT VARIABLE OF TYPE <-boolean-> TO TYPE ',
+    'row' => '//Code3;',
   ),
 )

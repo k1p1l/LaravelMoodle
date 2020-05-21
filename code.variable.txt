@@ -1,8 +1,10 @@
+string s = 'hello';
+boolean flag = true;
 int a = 10;
 
-switch (a) {
+switch (b) {
 	case (10):
-		//Code2;
+		//Code1;
 		break;
 	case (20):
 		//Code2;
@@ -14,4 +16,3 @@ switch (a) {
 		//CodeDefault;
 		break;
 }
-

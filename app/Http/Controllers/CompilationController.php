@@ -35,7 +35,6 @@ class CompilationController extends Controller
             $fileCode = file_get_contents($request->file_code);
             $this->readRowString(preg_replace("/[\t\r]++/", '', $fileCode));
         }
-//        dd($request);
     }
 
     public function readRowString($fileCode)
@@ -52,6 +51,8 @@ class CompilationController extends Controller
             foreach ($tmp as $value) {
                 $this->parserLeksema($value, $temp);
             }
+
+            $temp = '';
         }
         if ($this->error) {
             $filename = 'error.txt';
@@ -61,11 +62,24 @@ class CompilationController extends Controller
         $filename = 'leksema.txt';
         file_put_contents($filename, var_export($this->leksema, true));
 
-        dd($this->useVariableWithType);
+
+        $this->convertWIQA($this->leksema);
+    }
+
+    public function convertWIQA(array $leksema)
+    {
+        $Q = 0.0;
+        $A = 0.0;
+        dd($leksema);
+
+        foreach ($leksema as $item) {
+            dd($item);
+        }
     }
 
     public function parserLeksema($leksema, $rowString)
     {
+        dd(phpinfo());
         $checkTypeLeksema = CheckConst::checkVariableInArray($leksema);
 
         if ($checkTypeLeksema === 'Type Variable') {
@@ -96,12 +110,11 @@ class CompilationController extends Controller
         }
 
         if (!$checkTypeLeksema && self::$checkAfterTypeVariable) {
-            foreach ($this->useVariableWithType as $item){
-                if ($item['value'] === $leksema && $item['type'] != $this->variableNow)
-                {
+            foreach ($this->useVariableWithType as $item) {
+                if ($item['value'] === $leksema && $item['type'] != $this->variableNow) {
                     $this->error += [
-                        'id_'.++self::$id => [
-                            'exception' => 'VARIABLE <-'. $leksema .'-> ALREADY ANNOUNCED'
+                        'id_' . ++self::$id => [
+                            'exception' => 'VARIABLE <-' . $leksema . '-> ALREADY ANNOUNCED'
                         ]
                     ];
                 }
@@ -215,7 +228,7 @@ class CompilationController extends Controller
             return;
         }
 
-        if (self::$checkAfterCase) {
+        if (self::$checkAfterCase && !$checkTypeLeksema === 'Comment') {
             $leksema = trim($leksema, '():');
             if ($this->checkVariableInTypeVariable($leksema, $this->variableNow)) {
                 $this->leksema += [
