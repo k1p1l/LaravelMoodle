@@ -1,17 +1,15 @@
 int a = 10;
+int b = 50;
+string str = 'hello';
+str .= 'world';
 switch (a) {
 	case 10:
-		//CODE1;
+		//CODE1
 		break;
 	case 20:
-		//CODE2;
+		//CODE3
 		break;
-	case 50:
-	    //CODE5;
-	case 40:
-	//CODE4;
-	    break;
 	default:
-		//CODE3;
+		//CODE2;
 		break;
 }

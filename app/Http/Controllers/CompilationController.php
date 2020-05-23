@@ -57,16 +57,21 @@ class CompilationController extends Controller
                 $this->parserLeksema($value, trim($temp, ';:'));
             }
         }
-
         if ($this->error) {
             $this->writeArrayInFile($this->error, 'error.txt');
+            file_put_contents('errorArray.txt',print_r($this->error, 1));
         }
 
         $this->writeArrayInFile($this->leksema, 'leksema.txt');
+        file_put_contents('leksemaArray.txt',print_r($this->leksema, 1));
 
         $this->convertWIQA($this->leksema);
-
-//        return \redirect('/resource');
+        file_put_contents('WIQAArray.txt',print_r($this->WIQA, 1));
+//
+//        foreach ($this->WIQA as $value)
+//        {
+//            dd($value);
+//        }
     }
 
     public function convertWIQA(array $leksems)
@@ -137,7 +142,7 @@ class CompilationController extends Controller
                 $tmp = explode("\n", $switchCode);
                 $j = 0;
                 $k = 0;
-//                dd(($temp));
+
                 for ($i = 0; $i <= count($temp); $i++) {
                     if (!empty($temp[$i])) {
                         $this->WIQA['Q_' . $prevSwitchQ] += [
@@ -200,13 +205,13 @@ class CompilationController extends Controller
                 $var = '';
             }
         }
-        dd($this->WIQA);
 
+        $this->writeArrayInFile($this->WIQA, 'WIQA.txt');
     }
 
     public function findIndexWIQA($var, $sign, $value)
     {
-        $valueNew = '';;
+        $valueNew = '';
         foreach ($this->WIQA as $item) {
             $varItem = trim($item['var'], '&');
             if (trim($item['var'], '&') === $var) {

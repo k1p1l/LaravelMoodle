@@ -7,18 +7,15 @@ class CheckConst
     public static $systemCommand = [
         'switch', 'case', 'break', 'default', 'return'
     ];
-
     public static $typeVariable = [
         'int' => 'int', 'float' => 'float', 'double' => 'double',
         'string' => 'string', 'boolean' => 'boolean'
     ];
-
     public static $sign = [
         '+', '-', '++', '--', '*', '/', '=', '==', '===',
         '+=', '-=', '.', '*=', '/=', '>', '<', '<=', '>=',
         '.='
     ];
-
 
     public static function checkVariableInArray($variable)
     {
