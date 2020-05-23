@@ -1,0 +1,1 @@
+a:4:{s:3:"Q_1";a:2:{s:7:"varType";s:5:"(int)";s:3:"var";s:3:"&a&";}s:3:"Q_2";a:3:{s:7:"varType";s:5:"(int)";s:3:"var";s:3:"&b&";s:3:"A_1";s:2:"50";}s:3:"Q_3";a:3:{s:7:"varType";s:8:"(string)";s:3:"var";s:5:"&str&";s:3:"A_1";s:5:"false";}s:3:"Q_4";a:2:{s:5:"Q_4_1";s:4:"ELSE";s:7:"Q_4_1_1";s:7:"//CODE1";}}

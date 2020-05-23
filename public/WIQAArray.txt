@@ -1,0 +1,29 @@
+Array
+(
+    [Q_1] => Array
+        (
+            [varType] => (int)
+            [var] => &a&
+        )
+
+    [Q_2] => Array
+        (
+            [varType] => (int)
+            [var] => &b&
+            [A_1] => 50
+        )
+
+    [Q_3] => Array
+        (
+            [varType] => (string)
+            [var] => &str&
+            [A_1] => false
+        )
+
+    [Q_4] => Array
+        (
+            [Q_4_1] => ELSE
+            [Q_4_1_1] => //CODE1
+        )
+
+)

@@ -1,0 +1,15 @@
+int a = 'string';
+int b = 50;
+string str = false;
+q = 5;
+switch (h) {
+	case 10:
+		//CODE1
+		break;
+	case 20:
+		//CODE3
+		break;
+	default:
+		//CODE2;
+		break;
+}

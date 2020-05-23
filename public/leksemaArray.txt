@@ -1,0 +1,147 @@
+Array
+(
+    [id_1] => Array
+        (
+            [type] => Type Variable
+            [value] => int
+        )
+
+    [id_2] => Array
+        (
+            [type] => Variable Name
+            [value] => a
+        )
+
+    [id_3] => Array
+        (
+            [type] => Sign(equally)
+            [value] => =
+        )
+
+    [id_5] => Array
+        (
+            [type] => Type Variable
+            [value] => int
+        )
+
+    [id_6] => Array
+        (
+            [type] => Variable Name
+            [value] => b
+        )
+
+    [id_7] => Array
+        (
+            [type] => Sign(equally)
+            [value] => =
+        )
+
+    [id_8] => Array
+        (
+            [type] => Value
+            [value] => 50
+        )
+
+    [id_9] => Array
+        (
+            [type] => Type Variable
+            [value] => string
+        )
+
+    [id_10] => Array
+        (
+            [type] => Variable Name
+            [value] => str
+        )
+
+    [id_11] => Array
+        (
+            [type] => Sign(equally)
+            [value] => =
+        )
+
+    [id_12] => Array
+        (
+            [type] => Value
+            [value] => false
+        )
+
+    [id_14] => Array
+        (
+            [type] => Sign(equally)
+            [value] => =
+        )
+
+    [id_16] => Array
+        (
+            [type] => System Command
+            [value] => switch
+        )
+
+    [id_18] => Array
+        (
+            [type] => Open Scob
+            [value] => {
+        )
+
+    [id_19] => Array
+        (
+            [type] => System Command
+            [value] => case
+        )
+
+    [id_21] => Array
+        (
+            [type] => Comment
+            [value] => //CODE1
+        )
+
+    [id_22] => Array
+        (
+            [type] => System Command
+            [value] => break
+        )
+
+    [id_23] => Array
+        (
+            [type] => System Command
+            [value] => case
+        )
+
+    [id_25] => Array
+        (
+            [type] => Comment
+            [value] => //CODE3
+        )
+
+    [id_26] => Array
+        (
+            [type] => System Command
+            [value] => break
+        )
+
+    [id_27] => Array
+        (
+            [type] => System Command
+            [value] => default
+        )
+
+    [id_28] => Array
+        (
+            [type] => Comment
+            [value] => //CODE2
+        )
+
+    [id_29] => Array
+        (
+            [type] => System Command
+            [value] => break
+        )
+
+    [id_30] => Array
+        (
+            [type] => Close Scob
+            [value] => }
+        )
+
+)

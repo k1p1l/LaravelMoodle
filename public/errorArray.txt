@@ -1,0 +1,39 @@
+Array
+(
+    [id_4] => Array
+        (
+            [error] => DO NOT CONVERT TYPE <-'string'->
+            [line] => int a = 'string'
+        )
+
+    [id_13] => Array
+        (
+            [error] => THIS VARIABLE <-q-> IS NOT INITIALIZED
+            [line] => q = 5
+        )
+
+    [id_15] => Array
+        (
+            [error] => DO NOT CONVERT TYPE <-5->
+            [line] => q = 5
+        )
+
+    [id_17] => Array
+        (
+            [error] => UNKNOWN VARIABLE CONDITION <-h->
+            [line] => switch (h) {
+        )
+
+    [id_20] => Array
+        (
+            [error] => UNKNOWN VARIABLE CONDITION <-10->
+            [line] => case 10
+        )
+
+    [id_24] => Array
+        (
+            [error] => UNKNOWN VARIABLE CONDITION <-20->
+            [line] => case 20
+        )
+
+)
