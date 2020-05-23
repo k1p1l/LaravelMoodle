@@ -18,12 +18,6 @@ Array
             [value] => =
         )
 
-    [id_4] => Array
-        (
-            [type] => Value
-            [value] => 10
-        )
-
     [id_5] => Array
         (
             [type] => Type Variable
@@ -69,37 +63,19 @@ Array
     [id_12] => Array
         (
             [type] => Value
-            [value] => 'hello'
-        )
-
-    [id_13] => Array
-        (
-            [type] => Variable Name
-            [value] => str
+            [value] => false
         )
 
     [id_14] => Array
         (
-            [type] => Sign(Сoncatenation)
-            [value] => .=
-        )
-
-    [id_15] => Array
-        (
-            [type] => Value
-            [value] => 'world'
+            [type] => Sign(equally)
+            [value] => =
         )
 
     [id_16] => Array
         (
             [type] => System Command
             [value] => switch
-        )
-
-    [id_17] => Array
-        (
-            [type] => Switch Condition
-            [value] => a
         )
 
     [id_18] => Array
@@ -112,12 +88,6 @@ Array
         (
             [type] => System Command
             [value] => case
-        )
-
-    [id_20] => Array
-        (
-            [type] => Case expression
-            [value] => 10
         )
 
     [id_21] => Array
@@ -136,12 +106,6 @@ Array
         (
             [type] => System Command
             [value] => case
-        )
-
-    [id_24] => Array
-        (
-            [type] => Case expression
-            [value] => 20
         )
 
     [id_25] => Array

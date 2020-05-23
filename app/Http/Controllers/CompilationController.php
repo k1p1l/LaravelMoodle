@@ -6,6 +6,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\CheckConst;
+use Illuminate\Support\Facades\View;
 
 
 class CompilationController extends Controller
@@ -32,14 +33,16 @@ class CompilationController extends Controller
 
     public function getCode(Request $request)
     {
-
+        $fileCode = '';
         if ($request->text_code) {
-//            return;
-            phpinfo();
+            $fileCode = $request->text_code."\n";
+            $this->readRowString(preg_replace("/[\t\r]++/", '', $fileCode));
         } else {
             $fileCode = file_get_contents($request->file_code);
-            $this->readRowString(preg_replace("/[\t\r]++/", '', $fileCode));
+            $this->readRowString(preg_replace("/[\t\r]++/", '', $fileCode."\n"));
         }
+
+        return View::make("compil")->with('WIQA', $this->WIQA)->with( 'FileCode', $fileCode)->with('error', $this->error)->with('leksema', $this->error);
     }
 
     public function readRowString($fileCode)
@@ -62,16 +65,12 @@ class CompilationController extends Controller
             file_put_contents('errorArray.txt',print_r($this->error, 1));
         }
 
+
         $this->writeArrayInFile($this->leksema, 'leksema.txt');
         file_put_contents('leksemaArray.txt',print_r($this->leksema, 1));
 
         $this->convertWIQA($this->leksema);
         file_put_contents('WIQAArray.txt',print_r($this->WIQA, 1));
-
-//        foreach ($this->WIQA as $value)
-//        {
-//            dd($value);
-//        }
     }
 
     public function convertWIQA(array $leksems)

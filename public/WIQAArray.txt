@@ -4,7 +4,6 @@ Array
         (
             [varType] => (int)
             [var] => &a&
-            [A_1] => 10
         )
 
     [Q_2] => Array
@@ -18,23 +17,13 @@ Array
         (
             [varType] => (string)
             [var] => &str&
-            [A_1] => 'hello'
+            [A_1] => false
         )
 
     [Q_4] => Array
         (
-            [var] => &str&
-            [A_1] => 'hello world'
-        )
-
-    [Q_5] => Array
-        (
-            [Q_5_1] => IF &a& = 10 THEN BEGIN
-            [Q_5_1_1] => //CODE1
-            [Q_5_2] => IF &a& = 20 THEN BEGIN
-            [Q_5_2_2] => //CODE3
-            [Q_5_3] => ELSE
-            [Q_5_3_3] => //CODE2
+            [Q_4_1] => ELSE
+            [Q_4_1_1] => //CODE1
         )
 
 )
