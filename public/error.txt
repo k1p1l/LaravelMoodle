@@ -1,12 +1,1 @@
-array (
-  'id_6' => 
-  array (
-    'error' => 'THIS VARIABLE <-.=-> IS NOT INITIALIZED',
-    'line' => 's .= \'world\'',
-  ),
-  'id_7' => 
-  array (
-    'error' => 'THIS VARIABLE <-\'world\'-> IS NOT INITIALIZED',
-    'line' => 's .= \'world\'',
-  ),
-)
+a:8:{s:5:"id_18";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:11:"    //CODE5";}s:5:"id_19";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:11:"    //CODE5";}s:5:"id_20";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:11:"    //CODE5";}s:5:"id_21";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:11:"    //CODE5";}s:5:"id_26";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:9:"    break";}s:5:"id_27";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:9:"    break";}s:5:"id_28";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:9:"    break";}s:5:"id_29";a:2:{s:5:"error";s:37:"THIS VARIABLE <--> IS NOT INITIALIZED";s:4:"line";s:9:"    break";}}

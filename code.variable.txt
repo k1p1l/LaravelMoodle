@@ -1,5 +1,17 @@
-string s = 'hello';
-s .= 'world';
 int a = 10;
-a = 10 + 50;
-boolean flag = true;
+switch (a) {
+	case 10:
+		//CODE1;
+		break;
+	case 20:
+		//CODE2;
+		break;
+	case 50:
+	    //CODE5;
+	case 40:
+	//CODE4;
+	    break;
+	default:
+		//CODE3;
+		break;
+}

@@ -1,0 +1,15 @@
+string s = 'hello';
+s .= 'world';
+int a = 10;
+
+switch (a) {
+	case 10:
+		//CODE1;
+		break;
+	case 20:
+		//CODE2;
+		break;
+	default:
+		//CODE3;
+		break;
+}

@@ -1,0 +1,5 @@
+string s = 'hello';
+s .= 'world';
+int a = 10;
+a = 10 + 50;
+boolean flag = true;
