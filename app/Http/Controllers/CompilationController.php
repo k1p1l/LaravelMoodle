@@ -67,7 +67,7 @@ class CompilationController extends Controller
 
         $this->convertWIQA($this->leksema);
         file_put_contents('WIQAArray.txt',print_r($this->WIQA, 1));
-//
+
 //        foreach ($this->WIQA as $value)
 //        {
 //            dd($value);

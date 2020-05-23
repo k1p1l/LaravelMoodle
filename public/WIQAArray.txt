@@ -29,6 +29,12 @@ Array
 
     [Q_5] => Array
         (
+            [Q_5_1] => IF &a& = 10 THEN BEGIN
+            [Q_5_1_1] => //CODE1
+            [Q_5_2] => IF &a& = 20 THEN BEGIN
+            [Q_5_2_2] => //CODE3
+            [Q_5_3] => ELSE
+            [Q_5_3_3] => //CODE2
         )
 
 )

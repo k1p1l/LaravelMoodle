@@ -174,4 +174,10 @@ Array
             [value] => break
         )
 
+    [id_30] => Array
+        (
+            [type] => Close Scob
+            [value] => }
+        )
+
 )
